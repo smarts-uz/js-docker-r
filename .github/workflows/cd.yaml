@@ -22,5 +22,6 @@ jobs:
         uses: VaultVulp/gp-docker-action@1.6.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          image-name: ${{ github.repository }} # e.g., owner/repo
-          extract-git-tag: true # Automatically extract tag from git ref (main or git tag)
+          image-name: ${{ github.repository }} # e.g., smarts-uz/js-docker-r
+          image-tag: ${{ github.ref_name }} # Use ref_name to get clean branch (main) or tag (v1.0.0)
+          # Remove extract-git-tag to avoid invalid tag format
