@@ -1,51 +1,34 @@
-# Node / Next.js
-node_modules
-npm-debug.log
-yarn-error.log
-.pnpm-debug.log
+# Include any files or directories that you don't want to be copied to your
+# container here (e.g., local build artifacts, temporary files, etc.).
+#
+# For more help, visit the .dockerignore file reference guide at
+# https://docs.docker.com/go/build-context-dockerignore/
 
-# Next.js build output
-.next
-out
-
-# Logs
-*.log
-logs
-*.pid
-*.seed
-*.pid.lock
-
-# OS junk
-.DS_Store
-Thumbs.db
-
-# Env files (never bake secrets into images)
-.env
-.env.*.local
-
-# Git
-.git
-.gitignore
-.gitattributes
-
-# Docker
-Dockerfile*
-.dockerignore
-
-# IDEs / Editors
-.vscode
-.idea
-*.swp
-
-# Tests / coverage
-coverage
-*.spec.js
-*.test.js
-*.spec.ts
-*.test.ts
-
-# Cache
-.cache
-dist
-build
-tmp
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.project
+**/.settings
+**/.toolstarget
+**/.vs
+**/.vscode
+**/.next
+**/.cache
+**/*.*proj.user
+**/*.dbmdl
+**/*.jfm
+**/charts
+**/docker-compose*
+**/compose.y*ml
+**/Dockerfile*
+**/node_modules
+**/npm-debug.log
+**/obj
+**/secrets.dev.yaml
+**/values.dev.yaml
+**/build
+**/dist
+LICENSE
+README.md
