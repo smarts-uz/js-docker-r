@@ -34,12 +34,12 @@ jobs:
           source: .
           push: true
           set: |
-            *.tags=registry.hub.docker.com/${{ github.event.repository.owner.login }}/${{ github.event.repository.name }}:latest
+            *.tags=registry.hub.docker.com/ramz001/js-docker-test:latest
             *.platform=linux/amd64,linux/arm64
         env:
           DOCKER_BUILD_SUMMARY: true
           DOCKER_BUILD_RECORD_UPLOAD: true
 
     outputs:
-      image: registry.hub.docker.com/${{ github.event.repository.owner.login }}/${{ github.event.repository.name }}
+      image: registry.hub.docker.com/ramz001/js-docker-test
       tag: latest
