@@ -18,6 +18,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Debug tag
+        run: |
+          echo "Tag: ${{ github.ref_name }}"
+
       - name: Build and push Docker image
         uses: Staffbase/gitops-github-action@v6.4
         with:
@@ -29,4 +33,5 @@ jobs:
           docker-file: Dockerfile
           docker-build-target: ""
           docker-build-provenance: true
+          docker-disable-retagging: true
           working-directory: .
