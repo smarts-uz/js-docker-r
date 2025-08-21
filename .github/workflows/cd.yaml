@@ -1,4 +1,4 @@
-name: Build and Publish Docker Image
+name: Build and Publish Docker Image to Docker Hub
 
 on:
   push:
@@ -12,26 +12,28 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       contents: read
-      packages: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Debug tag
-        run: |
-          echo "Tag: ${{ github.ref_name }}"
-
       - name: Build and push Docker image
-        uses: Staffbase/gitops-github-action@v6.4
+        id: build
+        uses: cloudposse/github-action-docker-build-push@v1.17.2
         with:
-          docker-username: ${{ github.actor }}
-          docker-password: ${{ secrets.GITHUB_TOKEN }}
-          docker-registry: ghcr.io
-          docker-image: ghcr.io/${{ github.repository }}
-          docker-custom-tag: ${{ github.ref_name }}
-          docker-file: Dockerfile
-          docker-build-target: ""
-          docker-build-provenance: true
-          docker-disable-retagging: true
-          working-directory: .
+          registry: registry.hub.docker.com
+          organization: "${{ github.event.repository.owner.login }}"
+          repository: "${{ github.event.repository.name }}"
+          login: "${{ secrets.DOCKERHUB_USERNAME }}"
+          password: "${{ secrets.DOCKERHUB_PASSWORD }}"
+          tags: ${{ github.ref_name }}
+          platforms: linux/amd64,linux/arm64
+          file: Dockerfile
+          context: .
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          provenance: true
+
+    outputs:
+      image: ${{ steps.build.outputs.image }}
+      tag: ${{ steps.build.outputs.tag }}
