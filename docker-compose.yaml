@@ -17,7 +17,17 @@ services:
           target: "./app"
           action: sync
     environment:
-      DB_URL: example.com
+      DB_URL: postgres://user:password@db:5432/mydatabase
+  db:
+    image: postgres:17
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
 
 volumes:
-  tasked:
+  db_data:
