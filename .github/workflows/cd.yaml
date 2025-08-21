@@ -26,13 +26,7 @@ jobs:
           repository: "${{ github.event.repository.name }}"
           login: "${{ secrets.DOCKERHUB_USERNAME }}"
           password: "${{ secrets.DOCKERHUB_PASSWORD }}"
-          tags: ${{ github.ref_name }}
           platforms: linux/amd64,linux/arm64
-          file: Dockerfile
-          context: .
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          provenance: true
 
     outputs:
       image: ${{ steps.build.outputs.image }}
